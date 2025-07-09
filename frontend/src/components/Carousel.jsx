@@ -1,14 +1,20 @@
 import React from "react";
 import Box from "@mui/material/Box";
 
+// import local images properly
+import reactLogo from "../assets/react.svg";
+import microLogo from "../assets/micro.png";
+import mongoLogo from "../assets/mongodb.svg";
+import flutterLogo from "../assets/flutter.svg";
+
 const images = [
     "https://upload.wikimedia.org/wikipedia/commons/0/0e/Microsoft_.NET_logo.png",
     "https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png",
-    "/src/assets/react.svg",
     "https://cdn.freebiesupply.com/logos/large/2x/nodejs-1-logo-png-transparent.png",
-    "/src/assets/micro.png",
-    "/src/assets/mongodb.svg",
-    "/src/assets/flutter.svg"
+    reactLogo,
+    microLogo,
+    mongoLogo,
+    flutterLogo
 ];
 
 export default function Carousel() {
