@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+    background-color: aliceblue;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+}
+
+#navbar {
+    position: fixed;
+    z-index: 1200;
+}
+
+#bar-icon {
+    width: 4em;
+    display: none;
+}
+
+#drawer-logo {
+    width: -webkit-fill-available;
+}
+
+
+.banner-links li {
+    cursor: pointer;
+    background-color: rgb(255 255 255 / 7%);
+    font-size: large;
+    margin-bottom: 2px;
+    width: 17em;
+    color: white;
+    height: 5em;
+    padding: 1em;
+}
+
+.banner-links li::marker {
+    color: orange;
+    font-size: x-large;
+}
+
+.banner {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url('https://c1.wallpaperflare.com/path/14/432/956/laptop-computer-dark-room-a8ce414d6547f4c4a289489b37843e8b.jpg');
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: darken;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.banner-text {
+    padding: 2.5em;
+    color: white;
+    width: 55%;
+    margin-left: 12em;
+}
+
+
+.banner-text h1 {
+    font-family: "Domine", serif;
+    margin: 0;
+    font-size: 7em;
+}
+
+.banner-text p {
+    text-align: center;
+    width: fit-content;
+    font-size: xxx-large;
+    color: white;
+    background-image: linear-gradient(to right, black 100%, transparent 0%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    animation: background-anim 1s forwards ease-in;
+    padding: 0.2em 0.4em;
+}
+
+@keyframes background-anim {
+    to {
+        background-size: 100% 100%;
+    }
+}
+
+#slogan {
+    font-size: xx-large;
+}
+
+.carousel {
+    width: 100%;
+    overflow: hidden;
+}
+
+.inner-carousel {
+    display: flex;
+}
+
+.item {
+    flex: 0 0 auto;
+    width: 400px;
+    height: 150px;
+    margin-right: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.item img {
+    width: 100%;
+    height: -webkit-fill-available;
+    object-fit: contain;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8em;
+    padding: 0.3em;
+}
+
+#projects {
+    justify-content: center;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.load-more button {
+    background-color: #1976d2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.load-more button:hover {
+    background-color: #1565c0;
+}
+
+.vertical-timeline::before {
+    background: #000 !important;
+}
+
+.vertical-timeline-element-content,
+.vertical-timeline-element-icon {
+    background: #1976d2 !important;
+}
+
+.css-120ja3e {
+    height: 9em !important;
+}
+
+#contact {
+    border-radius: 10px;
+    padding: 3em;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    gap: 135px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.css-ioig64 {
+    margin: unset !important;
+    max-width: unset !important;
+    width: 50%;
+}
+
+.css-1hskriy {
+    padding: 1em;
+    width: 250px;
+}
+
+
+
+@media screen and (max-width:1200px) {
+    .banner-links li {
+        display: none;
+    }
+
+    #bar-icon {
+        display: block;
+    }
+
+    .banner-text h1 {
+        font-size: 5em;
+        text-align: center;
+    }
+
+    .banner-text {
+        text-align: center;
+        width: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: unset;
+    }
+
+    #contact {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #navbar {
+        width: 100%;
+        background-color: #0000000f;
+    }
+
+    .css-ioig64 {
+        width: 85%;
+    }
+
+    .banner-text p {
+        font-size: xx-large;
+    }
+}
+
+@media screen and (max-width:540px) {
+    .banner-text {
+        height: 70%;
+    }
+}
