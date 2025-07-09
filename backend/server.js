@@ -21,11 +21,12 @@ app.use('/api/experiences', experienceRoutes);
 app.use('/api/messages', messageRoutes);
 
 // Serve frontend build files (React)
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+app.all('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
 });
+
 
 const PORT = process.env.PORT || 5000;
 
