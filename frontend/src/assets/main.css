@@ -122,6 +122,7 @@ body {
     justify-items: center;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
+    padding: 0.5em;
     max-width: 1200px;
     margin: 0 auto;
 }

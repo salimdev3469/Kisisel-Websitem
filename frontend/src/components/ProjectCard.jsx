@@ -41,7 +41,6 @@ export default function MultiActionAreaCard({ image, title, location, link }) {
                         height: '6em',              // sabit yükseklik
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
-                        display: '-webkit-box',
                         WebkitLineClamp: 3,
                         WebkitBoxOrient: 'vertical',
                     }}
