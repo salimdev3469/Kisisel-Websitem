@@ -7,7 +7,7 @@ import Typography from '@mui/joy/Typography';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-export default function MultiActionAreaCard({ image, title, location, link }) {
+export default function MultiActionAreaCard({ image, title, location, link, technologies }) {
     return (
         <Card
             variant="outlined"
@@ -26,7 +26,7 @@ export default function MultiActionAreaCard({ image, title, location, link }) {
                     <img
                         src={image}
                         loading="lazy"
-                        alt=""
+                        alt={title}
                         style={{ objectFit: 'contain' }}
                     />
                 </AspectRatio>
@@ -38,15 +38,24 @@ export default function MultiActionAreaCard({ image, title, location, link }) {
                 <Typography
                     level="body-sm"
                     sx={{
-                        height: '6em',              // sabit yükseklik
+                        height: '6em',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         WebkitLineClamp: 3,
                         WebkitBoxOrient: 'vertical',
+                        display: '-webkit-box',
                     }}
                 >
                     {location}
                 </Typography>
+                {technologies && technologies.length > 0 && (
+                    <Typography
+                        level="body-xs"
+                        sx={{ mt: 1, color: 'primary.600' }}
+                    >
+                        <strong>Technologies:</strong> {technologies.join(', ')}
+                    </Typography>
+                )}
             </CardContent>
             {link && (
                 <CardContent>

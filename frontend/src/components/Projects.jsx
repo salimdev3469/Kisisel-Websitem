@@ -10,7 +10,18 @@ function Projects() {
 
     useEffect(() => {
         API.get('/projects')
-            .then(res => setProjects(res.data))
+            .then(res => {
+                console.log("API Response →", res.data);
+                if (res.data && Array.isArray(res.data.data)) {
+                    setProjects(res.data.data);
+                } else if (Array.isArray(res.data)) {
+                    // direkt array dönüyorsa (bazı backendlerde olur)
+                    setProjects(res.data);
+                } else {
+                    console.error("API response does not contain an array:", res.data);
+                    setProjects([]);
+                }
+            })
             .catch(err => console.error(err));
     }, []);
 
@@ -30,8 +41,8 @@ function Projects() {
                         title={project.title}
                         location={project.description}
                         link={project.link}
+                        technologies={project.technologies}
                     />
-
                 ))}
             </div>
             {visibleCount < projects.length && (

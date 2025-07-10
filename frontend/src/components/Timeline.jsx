@@ -9,18 +9,26 @@ function Timeline() {
 
     useEffect(() => {
         API.get('/experiences')
-            .then(res => setExperiences(res.data))
+            .then(res => {
+                // Eğer API response data'yı bir objenin içinde dönerse düzelt
+                // Örnek response: { data: [...] }
+                const data = Array.isArray(res.data)
+                    ? res.data
+                    : res.data.data || [];
+
+                setExperiences(data);
+            })
             .catch(err => console.error(err));
     }, []);
 
     return (
         <VerticalTimeline>
-            {experiences.map((exp) => (
+            {(Array.isArray(experiences) ? experiences : []).map((exp) => (
                 <VerticalTimelineElement
                     key={exp._id}
                     className="vertical-timeline-element--work"
                     contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                    contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                    contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
                     date={`${exp.startDate?.substring(0, 10)} - ${exp.endDate ? exp.endDate.substring(0, 10) : 'Present'}`}
                     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
                 >
@@ -30,7 +38,7 @@ function Timeline() {
                 </VerticalTimelineElement>
             ))}
         </VerticalTimeline>
-    )
+    );
 }
 
 export default Timeline;
