@@ -1,5 +1,5 @@
 import React from 'react'
-import '../assets/main.css'
+import '@/assets/main.css';
 
 function SectionTitleSeperator({ text, id }) {
     return (

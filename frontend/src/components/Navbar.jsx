@@ -1,5 +1,5 @@
 import React from 'react'
-import '../assets/main.css';
+import '@/assets/main.css';
 import TemporaryDrawer from './LeftDrawer';
 
 function Navbar() {

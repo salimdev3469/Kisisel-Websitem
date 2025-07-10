@@ -1,4 +1,6 @@
 import * as React from 'react';
+import barIcon from "/src/assets/bars.svg";
+import logo from "/src/assets/logo.png";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -43,12 +45,11 @@ export default function TemporaryDrawer() {
         <Box sx={{ width: 250 }} role="presentation">
             <List>
                 <img
-                    src="/src/assets/logo.png"
+                    src={logo}
                     alt="Logo"
                     id="drawer-logo"
                     style={{ maxWidth: '100%', marginBottom: '16px' }}
                 />
-
                 <ListItem disablePadding>
                     <ListItemButton onClick={handleNavigation('#second')}>
                         <ListItemIcon>
@@ -83,7 +84,7 @@ export default function TemporaryDrawer() {
     return (
         <>
             <Button onClick={toggleDrawer(true)}>
-                <img id="bar-icon" src="src/assets/bars.svg" alt="Menu" />
+                <img id="bar-icon" src={barIcon} alt="Menu" />
             </Button>
             <Drawer open={open} onClose={toggleDrawer(false)}>
                 {DrawerList}

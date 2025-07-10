@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MultiActionAreaCard from './ProjectCard';
-import '../assets/main.css';
+import '@/assets/main.css';
 import Button from '@mui/joy/Button';
 import API from '../services/api';
 
