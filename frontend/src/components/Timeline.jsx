@@ -28,11 +28,16 @@ function Timeline() {
                     contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
                     contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
                     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                    date={`${exp.startDate?.substring(0, 10)} - ${exp.endDate ? exp.endDate.substring(0, 10) : 'Present'}`}
                 >
+                    {/* Date'i manuel yerleştiriyoruz */}
+              
+
                     <h3 className="vertical-timeline-element-title">{exp.position}</h3>
                     <h4 className="vertical-timeline-element-subtitle">{exp.company}</h4>
                     <p>{exp.description}</p>
+                         <p style={{ fontWeight: 'bold', marginBottom: '8px', color:#c4bcbc }}>
+                        {exp.startDate?.substring(0, 10)} - {exp.endDate ? exp.endDate.substring(0, 10) : 'Present'}
+                    </p>
                 </VerticalTimelineElement>
             ))}
         </VerticalTimeline>
