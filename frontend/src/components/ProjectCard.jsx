@@ -53,7 +53,7 @@ export default function MultiActionAreaCard({ image, title, location, link, tech
                         level="body-xs"
                         sx={{ mt: 1, color: 'primary.600' }}
                     >
-                        <strong>Technologies:</strong> {technologies.join(', ')}
+                        <strong>Teknolojiler:</strong> {technologies.join(', ')}
                     </Typography>
                 )}
             </CardContent>
