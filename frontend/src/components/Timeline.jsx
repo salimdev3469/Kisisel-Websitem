@@ -10,8 +10,6 @@ function Timeline() {
     useEffect(() => {
         API.get('/experiences')
             .then(res => {
-                // Eğer API response data'yı bir objenin içinde dönerse düzelt
-                // Örnek response: { data: [...] }
                 const data = Array.isArray(res.data)
                     ? res.data
                     : res.data.data || [];
@@ -29,9 +27,13 @@ function Timeline() {
                     className="vertical-timeline-element--work"
                     contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
                     contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
-                    date={`${exp.startDate?.substring(0, 10)} - ${exp.endDate ? exp.endDate.substring(0, 10) : 'Present'}`}
                     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
                 >
+                    {/* Date'i manuel yerleştiriyoruz */}
+                    <p style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+                        {exp.startDate?.substring(0, 10)} - {exp.endDate ? exp.endDate.substring(0, 10) : 'Present'}
+                    </p>
+
                     <h3 className="vertical-timeline-element-title">{exp.position}</h3>
                     <h4 className="vertical-timeline-element-subtitle">{exp.company}</h4>
                     <p>{exp.description}</p>
