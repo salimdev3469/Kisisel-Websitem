@@ -10,8 +10,6 @@ function BannerText() {
                 sequence={[
                     'Web ve Mobil Sistemler için buradayız.',
                     900,
-                    'Gömülü Sistemler için buradayız.',
-                    900,
                     'Dağıtık Sistemler için buradayız.',
                     900,
                     'Bulut Sistemler için buradayız.',
