@@ -8,17 +8,17 @@ function BannerText() {
             <p>Full-Stack Yazılım Geliştirici</p>
             <TypeAnimation
                 sequence={[
-                    'Web ve Mobil Sistemler için buradayız.',
+                    'Web ve Mobil Sistemler için iletişime geçin.',
                     900,
-                    'Dağıtık Sistemler için buradayız.',
+                    'Dağıtık Sistemler için iletişime geçin.',
                     900,
-                    'Bulut Sistemler için buradayız.',
+                    'Bulut Sistemler için iletişime geçin.',
                     900,
                 ]}
                 id='slogan'
                 wrapper="span"
                 speed={60}
-                style={{ fontSize: '2em', display: 'inline-block', fontFamily: "Inter", }}
+                style={{ fontSize: '1.5em', display: 'inline-block', fontFamily: "Inter", }}
                 repeat={Infinity}
             />
         </div>
