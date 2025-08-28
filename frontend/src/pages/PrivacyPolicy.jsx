@@ -2,7 +2,13 @@ import React from "react";
 
 const PrivacyPolicy = () => {
   return (
-    <div style={{ padding: "30px", fontFamily: "Arial, sans-serif", lineHeight: 1.6, color: "#333" }}>
+    <div style={{ 
+      padding: "30px", 
+      fontFamily: "Arial, sans-serif", 
+      lineHeight: 1.6, 
+      color: "#333",
+      textAlign: "center"  // Buraya eklendi
+    }}>
       <h1 style={{ color: "#4B0082" }}>Gizlilik Politikası</h1>
       <p>Bu uygulama, kullanıcıların gizliliğine önem verir. Aşağıda, uygulamamızın verilerinizi nasıl topladığı ve kullandığı açıklanmaktadır.</p>
 
@@ -19,7 +25,7 @@ const PrivacyPolicy = () => {
       <p>Kullanıcı verilerinin güvenliği için gerekli teknik önlemler alınmaktadır.</p>
 
       <h2 style={{ color: "#4B0082" }}>İletişim</h2>
-      <p>Bu gizlilik politikası ile ilgili sorularınız için <a href="mailto:support@example.com">support@example.com</a> adresinden bize ulaşabilirsiniz.</p>
+      <p>Bu gizlilik politikası ile ilgili sorularınız için <a href="mailto:salimaka2014@gmail.com">salimaka2014@gmail.com</a> adresinden bize ulaşabilirsiniz.</p>
 
       <p>Son güncelleme: 28 Ağustos 2025</p>
     </div>
