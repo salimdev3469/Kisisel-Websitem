@@ -2,9 +2,9 @@ import React from 'react';
 import { Box, Container, Typography, Button, Stack, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import '../assets/main.css'; // Grid arka planı ve glow efekti için
+import '../assets/main.css';
 
-// --- 3D Kod Penceresi Bileşeni (Görsel Unsur) ---
+// --- 3D Kod Penceresi Bileşeni ---
 const CodeWindow = () => (
     <motion.div
         initial={{ opacity: 0, x: 50, rotateY: -10 }}
@@ -15,41 +15,49 @@ const CodeWindow = () => (
             transformStyle: 'preserve-3d',
             width: '100%',
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            alignItems: 'center'
         }}
     >
         <Box sx={{
-            background: 'rgba(15, 23, 42, 0.6)', // Yarı saydam koyu
-            border: '1px solid rgba(56, 189, 248, 0.2)', // İnce mavi çerçeve
+            background: 'rgba(15, 23, 42, 0.8)',
+            border: '1px solid rgba(56, 189, 248, 0.2)',
             borderRadius: '16px',
             padding: { xs: '20px', md: '24px' },
-            backdropFilter: 'blur(10px)', // Glassmorphism
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)', // Derin gölge
-            transform: { md: 'rotateY(-12deg) rotateX(5deg)' }, // Sadece PC'de 3D dönüşü
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+            transform: { md: 'rotateY(-12deg) rotateX(5deg)' },
             maxWidth: '500px',
             width: '100%',
+            textAlign: 'left', // Kodlar her zaman sola dayalı okunur
             fontFamily: '"Fira Code", monospace',
         }}>
-            {/* Pencere Butonları */}
             <Box sx={{ display: 'flex', gap: 1, mb: 3 }}>
                 <Box sx={{ width: 12, height: 12, borderRadius: '50%', bgcolor: '#EF4444' }} />
                 <Box sx={{ width: 12, height: 12, borderRadius: '50%', bgcolor: '#F59E0B' }} />
                 <Box sx={{ width: 12, height: 12, borderRadius: '50%', bgcolor: '#10B981' }} />
             </Box>
 
-            {/* Kod İçeriği */}
-            <Box sx={{ color: '#E2E8F0', fontSize: { xs: '0.8rem', sm: '0.9rem' }, lineHeight: 1.6 }}>
-                <div style={{ color: '#94A3B8' }}>// Architecting the future</div>
-                <div><span style={{ color: '#C084FC' }}>const</span> <span style={{ color: '#38BDF8' }}>Profile</span> = {'{'}</div>
-                <div style={{ paddingLeft: '20px' }}>name: <span style={{ color: '#A3E635' }}>'Salim Serhat AKA'</span>,</div>
-                <div style={{ paddingLeft: '20px' }}>role: <span style={{ color: '#A3E635' }}>'Full-Stack Developer'</span>,</div>
-                <div style={{ paddingLeft: '20px' }}>stack: [<span style={{ color: '#A3E635' }}>'React'</span>, <span style={{ color: '#A3E635' }}>'.NET'</span>, <span style={{ color: '#A3E635' }}>'Flutter'</span>]</div>
-                <div>{'}'};</div>
-
-                <div style={{ marginTop: '12px', display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ color: '#E2E8F0', fontSize: { xs: '0.85rem', sm: '0.9rem' }, lineHeight: 1.6 }}>
+                 <div style={{ color: '#94A3B8' }}>// Architecting the future</div>
+                 <div>
+                    <span style={{ color: '#C084FC' }}>const</span> <span style={{ color: '#38BDF8' }}>Profile</span> = {'{'}
+                 </div>
+                 <Box sx={{ pl: 3 }}>
+                    name: <span style={{ color: '#A3E635' }}>'Salim Serhat AKA'</span>,
+                 </Box>
+                 <Box sx={{ pl: 3 }}>
+                    role: <span style={{ color: '#A3E635' }}>'Full-Stack Developer'</span>,
+                 </Box>
+                 <Box sx={{ pl: 3 }}>
+                    stack: [<span style={{ color: '#A3E635' }}>'React'</span>, <span style={{ color: '#A3E635' }}>'.NET'</span>, <span style={{ color: '#A3E635' }}>'Flutter'</span>]
+                 </Box>
+                 <div>{'}'};</div>
+                 
+                 <div style={{ marginTop:'12px', display:'flex', alignItems:'center' }}>
                     <span style={{ color: '#C084FC' }}>await</span>&nbsp;project.<span style={{ color: '#38BDF8' }}>launch()</span>;
-                    <span className="cursor-blink" style={{ width: '8px', height: '18px', background: '#38BDF8', marginLeft: '6px' }}></span>
-                </div>
+                    <span className="cursor-blink" style={{ width:'8px', height:'18px', background:'#38BDF8', marginLeft:'6px' }}></span>
+                 </div>
             </Box>
         </Box>
     </motion.div>
@@ -58,40 +66,40 @@ const CodeWindow = () => (
 // --- Ana Banner Bileşeni ---
 function Banner() {
     return (
-        <Box className="hero-bg" sx={{
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            pt: { xs: 12, md: 0 }, // Mobilde Navbar payı
+        <Box className="hero-bg" sx={{ 
+            minHeight: '100vh', 
+            display: 'flex', 
+            alignItems: 'center', 
+            pt: { xs: 12, md: 0 }, 
             pb: { xs: 8, md: 0 },
-            overflow: 'hidden', // Animasyon taşmalarını gizle
+            overflow: 'hidden', 
             position: 'relative'
         }}>
-            <div className="hero-glow" /> {/* Arka plan ışığı */}
-
+            <div className="hero-glow" /> 
+            
             <Container maxWidth="xl">
-                <Grid container spacing={4} alignItems="center">
-
-                    {/* SOL TARAF (Yazılar) */}
-                    {/* Mobilde ortalar, PC'de sola yaslar */}
-                    <Grid item xs={12} md={7} sx={{
-                        textAlign: { xs: 'center', md: 'left' },
+                {/* justifyContent="center" ile içeriği ekrana ortalıyoruz */}
+                <Grid container spacing={6} alignItems="center" justifyContent="center">
+                    
+                    {/* SOL TARAF (Yazılar) - ARTIK ORTALI */}
+                    <Grid item xs={12} md={6} sx={{ 
+                        textAlign: 'center', // Her zaman ortala
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: { xs: 'center', md: 'flex-start' }
+                        alignItems: 'center' // Flex öğelerini ortala
                     }}>
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            style={{ width: '100%' }}
+                            style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                         >
                             {/* Rozet */}
-                            <Box sx={{
-                                display: 'inline-flex',
-                                px: 2, py: 0.8, mb: 3,
-                                borderRadius: '20px',
-                                background: 'rgba(56, 189, 248, 0.1)',
+                            <Box sx={{ 
+                                display: 'inline-flex', 
+                                px: 2, py: 0.8, mb: 3, 
+                                borderRadius: '20px', 
+                                background: 'rgba(56, 189, 248, 0.1)', 
                                 border: '1px solid rgba(56, 189, 248, 0.2)',
                                 color: '#38BDF8', fontSize: '0.85rem', fontWeight: 600
                             }}>
@@ -99,51 +107,50 @@ function Banner() {
                             </Box>
 
                             {/* Devasa İsim */}
-                            <Typography variant="h1" sx={{
-                                fontSize: { xs: '3.5rem', sm: '5rem', md: '6rem', lg: '7.5rem' },
-                                fontWeight: 900,
-                                lineHeight: 0.95,
-                                color: '#fff',
+                            <Typography variant="h1" sx={{ 
+                                fontSize: { xs: '3.5rem', sm: '5rem', md: '5.5rem', lg: '6.5rem' }, 
+                                fontWeight: 900, 
+                                lineHeight: 0.95, 
+                                color: '#fff', 
                                 mb: 3,
                                 letterSpacing: '-0.03em',
                                 textTransform: 'uppercase'
                             }}>
-                                SALİM<br />
-                                <span style={{
-                                    background: 'linear-gradient(to right, #ffffff 20%, #94A3B8 100%)', // Metalik degrade
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent'
+                                SALİM<br/>
+                                <span style={{ 
+                                    background: 'linear-gradient(to right, #ffffff 20%, #94A3B8 100%)', 
+                                    WebkitBackgroundClip: 'text', 
+                                    WebkitTextFillColor: 'transparent' 
                                 }}>
                                     SERHAT AKA
                                 </span>
                             </Typography>
-
+                            
                             {/* Alt Açıklama */}
-                            <Typography sx={{
-                                fontSize: { xs: '1.1rem', md: '1.3rem' },
-                                color: '#94A3B8',
-                                mb: 5,
+                            <Typography sx={{ 
+                                fontSize: { xs: '1.1rem', md: '1.25rem' }, 
+                                color: '#94A3B8', 
+                                mb: 5, 
                                 lineHeight: 1.6,
                                 maxWidth: '650px',
-                                fontWeight: 300,
-                                mx: { xs: 'auto', md: 0 }
+                                fontWeight: 300
                             }}>
-                                Kurumsal mimariye uygun, <strong style={{ color: '#fff' }}>yüksek performanslı</strong> web ve mobil sistemler geliştiren Bilgisayar Mühendisi.
+                                Kurumsal mimariye uygun, <strong style={{color:'#fff'}}>yüksek performanslı</strong> web ve mobil sistemler geliştiren Yazılım Mühendisi.
                             </Typography>
 
-                            {/* Butonlar */}
-                            <Stack
-                                direction={{ xs: 'column', sm: 'row' }}
-                                spacing={2}
-                                justifyContent={{ xs: 'center', md: 'flex-start' }}
+                            {/* Butonlar - Ortalı */}
+                            <Stack 
+                                direction={{ xs: 'column', sm: 'row' }} 
+                                spacing={2} 
+                                justifyContent="center" // Butonları ortala
                                 sx={{ width: '100%' }}
                             >
-                                <Button
-                                    variant="contained"
+                                <Button 
+                                    variant="contained" 
                                     size="large"
                                     endIcon={<ArrowForwardIcon />}
                                     onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-                                    sx={{
+                                    sx={{ 
                                         py: 1.5, px: 5, fontSize: '1rem',
                                         background: '#fff', color: '#0F172A', fontWeight: 'bold',
                                         '&:hover': { background: '#F1F5F9', transform: 'translateY(-2px)' },
@@ -152,11 +159,11 @@ function Banner() {
                                 >
                                     Projeleri İncele
                                 </Button>
-                                <Button
-                                    variant="outlined"
-                                    size="large"
+                                <Button 
+                                    variant="outlined" 
+                                    size="large" 
                                     onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                                    sx={{
+                                    sx={{ 
                                         py: 1.5, px: 5, fontSize: '1rem',
                                         borderColor: 'rgba(255,255,255,0.2)', color: '#fff',
                                         '&:hover': { borderColor: '#fff', background: 'rgba(255,255,255,0.05)' }
@@ -168,8 +175,8 @@ function Banner() {
                         </motion.div>
                     </Grid>
 
-                    {/* SAĞ TARAF (Görsel - Kod Penceresi) */}
-                    <Grid item xs={12} md={5} sx={{ mt: { xs: 8, md: 0 }, display: 'flex', justifyContent: 'center' }}>
+                    {/* SAĞ TARAF (Kod Kartı) */}
+                    <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <CodeWindow />
                     </Grid>
 
