@@ -120,7 +120,7 @@ function Banner() {
                                 letterSpacing: '-0.03em',
                                 textTransform: 'uppercase'
                             }}>
-                                SALiM<br/>
+                                SALİM<br/>
                                 <span style={{ 
                                     background: 'linear-gradient(to right, #ffffff 20%, #94A3B8 100%)', 
                                     WebkitBackgroundClip: 'text', 
