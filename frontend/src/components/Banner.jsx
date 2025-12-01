@@ -29,7 +29,7 @@ const CodeWindow = () => (
             transform: { md: 'rotateY(-12deg) rotateX(5deg)' },
             maxWidth: '500px',
             width: '100%',
-            textAlign: 'left', // Kodlar her zaman sola dayalı okunur
+            textAlign: 'left', // Kodlar her zaman sola dayalı
             fontFamily: '"Fira Code", monospace',
         }}>
             <Box sx={{ display: 'flex', gap: 1, mb: 3 }}>
@@ -47,7 +47,7 @@ const CodeWindow = () => (
                     name: <span style={{ color: '#A3E635' }}>'Salim Serhat AKA'</span>,
                  </Box>
                  <Box sx={{ pl: 3 }}>
-                    role: <span style={{ color: '#A3E635' }}>'Full-Stack Developer'</span>,
+                    role: <span style={{ color: '#A3E635' }}>'Senior Full-Stack Dev'</span>,
                  </Box>
                  <Box sx={{ pl: 3 }}>
                     stack: [<span style={{ color: '#A3E635' }}>'React'</span>, <span style={{ color: '#A3E635' }}>'.NET'</span>, <span style={{ color: '#A3E635' }}>'Flutter'</span>]
@@ -78,21 +78,21 @@ function Banner() {
             <div className="hero-glow" /> 
             
             <Container maxWidth="xl">
-                {/* justifyContent="center" ile içeriği ekrana ortalıyoruz */}
-                <Grid container spacing={6} alignItems="center" justifyContent="center">
+                <Grid container spacing={6} alignItems="center">
                     
-                    {/* SOL TARAF (Yazılar) - ARTIK ORTALI */}
-                    <Grid item xs={12} md={6} sx={{ 
-                        textAlign: 'center', // Her zaman ortala
+                    {/* SOL TARAF (Yazılar) */}
+                    {/* Responsive Ayar: xs=Center, md=Left */}
+                    <Grid item xs={12} md={7} sx={{ 
+                        textAlign: { xs: 'center', md: 'left' }, 
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'center' // Flex öğelerini ortala
+                        alignItems: { xs: 'center', md: 'flex-start' } // Mobilde ortala, PC'de sola yasla
                     }}>
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                            style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'inherit' }} // alignItems inherit ile üstteki ayarı alır
                         >
                             {/* Rozet */}
                             <Box sx={{ 
@@ -108,7 +108,7 @@ function Banner() {
 
                             {/* Devasa İsim */}
                             <Typography variant="h1" sx={{ 
-                                fontSize: { xs: '3.5rem', sm: '5rem', md: '5.5rem', lg: '6.5rem' }, 
+                                fontSize: { xs: '3.5rem', sm: '5rem', md: '5.5rem', lg: '7rem' }, 
                                 fontWeight: 900, 
                                 lineHeight: 0.95, 
                                 color: '#fff', 
@@ -116,7 +116,7 @@ function Banner() {
                                 letterSpacing: '-0.03em',
                                 textTransform: 'uppercase'
                             }}>
-                                SALİM<br/>
+                                SALIM<br/>
                                 <span style={{ 
                                     background: 'linear-gradient(to right, #ffffff 20%, #94A3B8 100%)', 
                                     WebkitBackgroundClip: 'text', 
@@ -133,16 +133,17 @@ function Banner() {
                                 mb: 5, 
                                 lineHeight: 1.6,
                                 maxWidth: '650px',
-                                fontWeight: 300
+                                fontWeight: 300,
+                                mx: { xs: 'auto', md: 0 } // Mobilde margin auto ile ortala, PC'de 0
                             }}>
                                 Kurumsal mimariye uygun, <strong style={{color:'#fff'}}>yüksek performanslı</strong> web ve mobil sistemler geliştiren Yazılım Mühendisi.
                             </Typography>
 
-                            {/* Butonlar - Ortalı */}
+                            {/* Butonlar */}
                             <Stack 
                                 direction={{ xs: 'column', sm: 'row' }} 
                                 spacing={2} 
-                                justifyContent="center" // Butonları ortala
+                                justifyContent={{ xs: 'center', md: 'flex-start' }} // Mobilde ortala, PC'de sola
                                 sx={{ width: '100%' }}
                             >
                                 <Button 
@@ -176,7 +177,7 @@ function Banner() {
                     </Grid>
 
                     {/* SAĞ TARAF (Kod Kartı) */}
-                    <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Grid item xs={12} md={5} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <CodeWindow />
                     </Grid>
 
