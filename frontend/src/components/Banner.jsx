@@ -78,21 +78,25 @@ function Banner() {
             <div className="hero-glow" /> 
             
             <Container maxWidth="xl">
-                <Grid container spacing={6} alignItems="center">
+                {/* justifyContent="center": İçerik bloklarını (Yazı ve Resim) sayfanın ortasına toplar.
+                   alignItems="center": Dikeyde ortalar.
+                */}
+                <Grid container spacing={6} alignItems="center" justifyContent="center">
                     
                     {/* SOL TARAF (Yazılar) */}
-                    {/* Responsive Ayar: xs=Center, md=Left */}
                     <Grid item xs={12} md={7} sx={{ 
+                        // KRİTİK AYAR: Mobilde ortala, PC'de SOLA yasla
                         textAlign: { xs: 'center', md: 'left' }, 
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: { xs: 'center', md: 'flex-start' } // Mobilde ortala, PC'de sola yasla
+                        // KRİTİK AYAR: Flex öğelerini mobilde ortala, PC'de başa (sola) al
+                        alignItems: { xs: 'center', md: 'flex-start' } 
                     }}>
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'inherit' }} // alignItems inherit ile üstteki ayarı alır
+                            style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'inherit' }}
                         >
                             {/* Rozet */}
                             <Box sx={{ 
@@ -106,7 +110,7 @@ function Banner() {
                                 Available for Projects
                             </Box>
 
-                            {/* Devasa İsim */}
+                            {/* Devasa İsim (Sola Yaslı) */}
                             <Typography variant="h1" sx={{ 
                                 fontSize: { xs: '3.5rem', sm: '5rem', md: '5.5rem', lg: '7rem' }, 
                                 fontWeight: 900, 
@@ -126,7 +130,7 @@ function Banner() {
                                 </span>
                             </Typography>
                             
-                            {/* Alt Açıklama */}
+                            {/* Alt Açıklama (Sola Yaslı) */}
                             <Typography sx={{ 
                                 fontSize: { xs: '1.1rem', md: '1.25rem' }, 
                                 color: '#94A3B8', 
@@ -134,7 +138,8 @@ function Banner() {
                                 lineHeight: 1.6,
                                 maxWidth: '650px',
                                 fontWeight: 300,
-                                mx: { xs: 'auto', md: 0 } // Mobilde margin auto ile ortala, PC'de 0
+                                // Mobilde margin auto ile ortala, PC'de 0 (sola yapışık)
+                                mx: { xs: 'auto', md: 0 } 
                             }}>
                                 Kurumsal mimariye uygun, <strong style={{color:'#fff'}}>yüksek performanslı</strong> web ve mobil sistemler geliştiren Yazılım Mühendisi.
                             </Typography>
@@ -143,7 +148,8 @@ function Banner() {
                             <Stack 
                                 direction={{ xs: 'column', sm: 'row' }} 
                                 spacing={2} 
-                                justifyContent={{ xs: 'center', md: 'flex-start' }} // Mobilde ortala, PC'de sola
+                                // Mobilde ortala, PC'de başa (sola)
+                                justifyContent={{ xs: 'center', md: 'flex-start' }} 
                                 sx={{ width: '100%' }}
                             >
                                 <Button 
