@@ -39,7 +39,7 @@ const CodeWindow = () => (
             </Box>
 
             <Box sx={{ color: '#E2E8F0', fontSize: { xs: '0.85rem', sm: '0.9rem' }, lineHeight: 1.6 }}>
-                 <div style={{ color: '#94A3B8' }}>// Architecting the future</div>
+                 <div style={{ color: '#94A3B8' }}>// Refactoring the future</div>
                  <div>
                     <span style={{ color: '#C084FC' }}>const</span> <span style={{ color: '#38BDF8' }}>Profile</span> = {'{'}
                  </div>
@@ -47,7 +47,7 @@ const CodeWindow = () => (
                     name: <span style={{ color: '#A3E635' }}>'Salim Serhat AKA'</span>,
                  </Box>
                  <Box sx={{ pl: 3 }}>
-                    role: <span style={{ color: '#A3E635' }}>'Senior Full-Stack Dev'</span>,
+                    role: <span style={{ color: '#A3E635' }}>'Full-Stack Developer'</span>,
                  </Box>
                  <Box sx={{ pl: 3 }}>
                     stack: [<span style={{ color: '#A3E635' }}>'React'</span>, <span style={{ color: '#A3E635' }}>'.NET'</span>, <span style={{ color: '#A3E635' }}>'Flutter'</span>]
@@ -120,7 +120,7 @@ function Banner() {
                                 letterSpacing: '-0.03em',
                                 textTransform: 'uppercase'
                             }}>
-                                SALIM<br/>
+                                SALiM<br/>
                                 <span style={{ 
                                     background: 'linear-gradient(to right, #ffffff 20%, #94A3B8 100%)', 
                                     WebkitBackgroundClip: 'text', 
@@ -141,7 +141,7 @@ function Banner() {
                                 // Mobilde margin auto ile ortala, PC'de 0 (sola yapışık)
                                 mx: { xs: 'auto', md: 0 } 
                             }}>
-                                Kurumsal mimariye uygun, <strong style={{color:'#fff'}}>yüksek performanslı</strong> web ve mobil sistemler geliştiren Yazılım Mühendisi.
+                                Kurumsal mimariye uygun, <strong style={{color:'#fff'}}>yüksek performanslı</strong> web ve mobil sistemler geliştiren Bilgisayar Mühendisi.
                             </Typography>
 
                             {/* Butonlar */}
