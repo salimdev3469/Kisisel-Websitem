@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import MultiActionAreaCard from './ProjectCard';
-import '@/assets/main.css';
-import Button from '@mui/joy/Button';
+import ProjectCard from './ProjectCard';
+import { Button, Box, Grid } from '@mui/material'; // Grid'i buradan çekiyoruz
 import API from '../services/api';
 
 function Projects() {
@@ -11,18 +10,14 @@ function Projects() {
     useEffect(() => {
         API.get('/projects')
             .then(res => {
-                console.log("API Response →", res.data);
-                if (res.data && Array.isArray(res.data.data)) {
-                    setProjects(res.data.data);
-                } else if (Array.isArray(res.data)) {
-                    // direkt array dönüyorsa (bazı backendlerde olur)
-                    setProjects(res.data);
-                } else {
-                    console.error("API response does not contain an array:", res.data);
-                    setProjects([]);
-                }
+                // API hatası olsa bile array kontrolü yapalım
+                const data = res.data?.data || res.data;
+                setProjects(Array.isArray(data) ? data : []);
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error("Projeler yüklenemedi:", err);
+                setProjects([]); // Hata durumunda boş dizi ata, uygulama çökmesin
+            });
     }, []);
 
     const handleLoadMore = () => {
@@ -32,27 +27,40 @@ function Projects() {
     const visibleProjects = projects.slice(0, visibleCount);
 
     return (
-        <>
-            <div id="projects" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+        <Box id="projects" sx={{ py: 4 }}>
+            {/* MUI v6 GRID SİSTEMİ DÜZELTMESİ */}
+            <Grid container spacing={4} justifyContent="center">
                 {visibleProjects.map((project) => (
-                    <MultiActionAreaCard
-                        key={project._id}
-                        image={project.imageUrl}
-                        title={project.title}
-                        location={project.description}
-                        link={project.link}
-                        technologies={project.technologies}
-                    />
+                    // 'item' prop'u YOK. xs={12} yerine size={{ xs: 12 }} kullanıyoruz.
+                    <Grid key={project._id} size={{ xs: 12, sm: 6, md: 4 }}>
+                        <ProjectCard
+                            image={project.imageUrl}
+                            title={project.title}
+                            location={project.description}
+                            link={project.link}
+                            technologies={project.technologies}
+                        />
+                    </Grid>
                 ))}
-            </div>
+            </Grid>
+
             {visibleCount < projects.length && (
-                <div className="load-more" style={{ marginTop: '20px', textAlign: 'center' }}>
-                    <Button onClick={handleLoadMore} variant="solid" color="primary">
-                        Daha fazlasını gör
+                <Box sx={{ mt: 6, textAlign: 'center' }}>
+                    <Button
+                        onClick={handleLoadMore}
+                        variant="outlined"
+                        size="large"
+                        sx={{
+                            color: '#fff',
+                            borderColor: 'rgba(255,255,255,0.2)',
+                            '&:hover': { borderColor: '#fff', bgcolor: 'rgba(255,255,255,0.05)' }
+                        }}
+                    >
+                        Daha Fazla Proje
                     </Button>
-                </div>
+                </Box>
             )}
-        </>
+        </Box>
     );
 }
 

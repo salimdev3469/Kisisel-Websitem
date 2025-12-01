@@ -1,29 +1,26 @@
-import * as React from 'react';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Textarea from '@mui/joy/Textarea';
-import Typography from '@mui/joy/Typography';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import React, { useState } from 'react';
+import {
+    Box,
+    Button,
+    TextField,
+    Typography,
+    Snackbar,
+    Alert,
+    Paper
+} from '@mui/material'; // Joy yerine Material importları
+import SendIcon from '@mui/icons-material/Send';
 import API from '../services/api';
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
 export default function ContactForm() {
-    const [formData, setFormData] = React.useState({
+    const [formData, setFormData] = useState({
         name: '',
         email: '',
         message: ''
     });
 
-    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-    const [snackbarSeverity, setSnackbarSeverity] = React.useState('success');
-    const [snackbarMessage, setSnackbarMessage] = React.useState('');
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+    const [snackbarMessage, setSnackbarMessage] = useState('');
 
     const handleChange = (e) => {
         setFormData({
@@ -33,18 +30,15 @@ export default function ContactForm() {
     };
 
     const handleCloseSnackbar = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
+        if (reason === 'clickaway') return;
         setSnackbarOpen(false);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        // API isteği simülasyonu veya gerçek istek
         API.post('/messages', formData)
             .then((res) => {
-                console.log(res.data);
                 setSnackbarSeverity('success');
                 setSnackbarMessage('Mesajınız başarıyla gönderildi!');
                 setSnackbarOpen(true);
@@ -59,56 +53,58 @@ export default function ContactForm() {
     };
 
     return (
-        <>
-            <Box
-                component="form"
-                onSubmit={handleSubmit}
-                sx={{
-                    maxWidth: 600,
-                    mx: 'auto',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 2,
-                    mt: 4,
-                }}
-            >
-                <Typography level="h4" textAlign="center">
-                    Detaylı özgeçmiş talebi için mesaj kısmına 'CV' yazmanız yeterlidir.
-                </Typography>
+        <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
+            <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
 
-                <FormControl>
-                    <FormLabel>Ad Soyad</FormLabel>
-                    <Input
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Adınız.."
-                    />
-                </FormControl>
+                <Box>
+                    <Typography variant="h5" component="h2" gutterBottom fontWeight="bold">
+                        Bana Ulaşın
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        Detaylı özgeçmiş (CV) talebi için mesaj kısmına 'CV' yazmanız yeterlidir.
+                    </Typography>
+                </Box>
 
-                <FormControl>
-                    <FormLabel>E-Posta</FormLabel>
-                    <Input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="E-Posta adresiniz.."
-                    />
-                </FormControl>
+                <TextField
+                    label="Ad Soyad"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    fullWidth
+                    variant="outlined"
+                    required
+                />
 
-                <FormControl>
-                    <FormLabel>Mesaj</FormLabel>
-                    <Textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        minRows={4}
-                        placeholder="Mesajınız.."
-                    />
-                </FormControl>
+                <TextField
+                    label="E-Posta"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    fullWidth
+                    variant="outlined"
+                    required
+                />
 
-                <Button type="submit" color="primary">
+                <TextField
+                    label="Mesajınız"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    fullWidth
+                    multiline
+                    rows={4}
+                    variant="outlined"
+                    required
+                />
+
+                <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    endIcon={<SendIcon />}
+                    sx={{ alignSelf: 'flex-end', px: 4 }}
+                >
                     Gönder
                 </Button>
             </Box>
@@ -117,16 +113,12 @@ export default function ContactForm() {
                 open={snackbarOpen}
                 autoHideDuration={3000}
                 onClose={handleCloseSnackbar}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             >
-                <Alert
-                    onClose={handleCloseSnackbar}
-                    severity={snackbarSeverity}
-                    sx={{ width: '100%' }}
-                >
+                <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
                     {snackbarMessage}
                 </Alert>
             </Snackbar>
-        </>
+        </Paper>
     );
 }

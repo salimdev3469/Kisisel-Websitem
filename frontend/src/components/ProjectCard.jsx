@@ -1,85 +1,73 @@
-import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
-import Card from '@mui/joy/Card';
-import CardContent from '@mui/joy/CardContent';
-import CardOverflow from '@mui/joy/CardOverflow';
-import Typography from '@mui/joy/Typography';
-import Button from '@mui/material/Button';
+import React from 'react';
+import { Card, CardContent, CardMedia, Typography, Box, Chip, Button } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-export default function MultiActionAreaCard({ image, title, location, link, technologies }) {
+export default function ProjectCard({ image, title, location, link, technologies }) {
     return (
-        <Card
-            variant="outlined"
-            sx={{
-                width: 320,
-                transition: 'transform 0.3s ease, boxShadow 0.3s ease',
-                '&:hover': {
-                    transform: 'scale(1.04)',
-                    boxShadow: 'lg',
-                    borderColor: 'primary.500',
-                },
-            }}
-        >
-            <CardOverflow>
-                <AspectRatio ratio="2">
-                    <img
-                        src={image}
-                        loading="lazy"
-                        alt={title}
-                        style={{ objectFit: 'contain' }}
-                    />
-                </AspectRatio>
-            </CardOverflow>
-            <CardContent>
-                <Typography level="title-md" sx={{ minHeight: '2.5em' }}>
+        <Card sx={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            background: 'rgba(17, 24, 39, 0.6)', // Yarı saydam
+            backdropFilter: 'blur(10px)', // Buzlama
+            border: '1px solid rgba(255, 255, 255, 0.08)', // İnce çerçeve
+            transition: 'all 0.3s ease',
+            '&:hover': {
+                transform: 'translateY(-10px)',
+                boxShadow: '0 20px 40px -5px rgba(0,0,0,0.4)',
+                borderColor: '#3B82F6' // Hoverda mavi çerçeve
+            }
+        }}>
+            <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+                <CardMedia
+                    component="img"
+                    height="200"
+                    image={image || 'https://via.placeholder.com/400x200'}
+                    alt={title}
+                    sx={{ transition: 'transform 0.5s', '&:hover': { transform: 'scale(1.05)' } }}
+                />
+            </Box>
+
+            <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                <Typography gutterBottom variant="h5" component="div" fontWeight="bold" color="white">
                     {title}
                 </Typography>
-                <Typography
-                    level="body-sm"
-                    sx={{
-                        height: '6em',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: 'vertical',
-                        display: '-webkit-box',
-                    }}
-                >
+                <Typography variant="body2" sx={{ color: '#94A3B8', mb: 3, lineHeight: 1.7 }}>
                     {location}
                 </Typography>
-                {technologies && technologies.length > 0 && (
-                    <Typography
-                        level="body-xs"
-                        sx={{ mt: 1, color: 'primary.600' }}
-                    >
-                        <strong>Teknolojiler:</strong> {technologies.join(', ')}
-                    </Typography>
-                )}
-            </CardContent>
-            {link && (
-                <CardContent>
+
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
+                    {technologies?.map((tech, i) => (
+                        <Chip
+                            key={i}
+                            label={tech}
+                            size="small"
+                            sx={{
+                                background: 'rgba(59, 130, 246, 0.1)',
+                                color: '#60A5FA',
+                                border: '1px solid rgba(59, 130, 246, 0.2)'
+                            }}
+                        />
+                    ))}
+                </Box>
+
+                {link && (
                     <Button
-                        component="a"
+                        fullWidth
+                        variant="outlined"
+                        startIcon={<GitHubIcon />}
                         href={link}
                         target="_blank"
-                        rel="noopener noreferrer"
-                        variant="contained"
-                        startIcon={<GitHubIcon />}
                         sx={{
-                            width: '100%',
-                            backgroundColor: '#000',
+                            borderColor: 'rgba(255,255,255,0.1)',
                             color: '#fff',
-                            '&:hover': {
-                                backgroundColor: '#333',
-                            },
-                            textTransform: 'none',
+                            '&:hover': { borderColor: '#fff', background: 'rgba(255,255,255,0.05)' }
                         }}
                     >
-                        GitHub'da Projeyi Gör
+                        Kaynak Kod
                     </Button>
-                </CardContent>
-            )}
+                )}
+            </CardContent>
         </Card>
     );
 }
